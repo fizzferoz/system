@@ -1,0 +1,42 @@
+
+Enter new movie information:<br/>
+<%= form_for @movie do |f| %><br>
+
+
+ <div class="field">
+    <%= f.label :Title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :Year%><br>
+    <%= f.text_field :years%>
+  </div>
+
+<div class="actions"><br>
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<br><br>
+<hr/>
+<br>
+List of all movies: <br><br>
+<%if !@movies.blank? %>
+	<table border=1>
+		<tr>
+			<th> Title</th>
+			<th> Year </th>
+		</tr>
+	<% for item in @movies %>
+		<tr>
+			<td><%= link_to item.title, :controller => :rentals , :action => :new, :id => item.id%></td>
+			<td><%= item.years %> </td>
+	</tr>
+	
+	
+	<%end %>
+	</table>
+<%else %>
+	no movies yet !
+<% end %>
